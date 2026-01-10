@@ -10,7 +10,8 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import axios from 'axios';  
+import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 function App() {
   const [emailContent, setEmailContent] = useState('');
@@ -41,24 +42,45 @@ function App() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Typography variant="h3" component="h1" gutterBottom>
-        Email Writer AI
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      {/* Heading */}
+      <Typography
+        variant="h3"
+        component="h1"
+        align="center"
+        gutterBottom
+        sx={{
+          fontWeight: 'bold',
+          background: 'linear-gradient(90deg, #1976d2, #42a5f5)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+         Email Reply AI
       </Typography>
 
-      <Box sx={{ mx: 3 }}>
+      {/* Form Section */}
+      <Paper
+        elevation={4}
+        sx={{
+          p: 4,
+          borderRadius: 3,
+          backgroundColor: '#f9f9f9',
+          backdropFilter: 'blur(6px)',
+        }}
+      >
         <TextField
           fullWidth
           multiline
           rows={6}
           variant="outlined"
-          label="Original Email Content"
+          label="Paste Original Email Content"
           value={emailContent}
           onChange={(e) => setEmailContent(e.target.value)}
-          sx={{ mb: 2 }}
+          sx={{ mb: 3 }}
         />
 
-        <FormControl fullWidth sx={{ mb: 2 }}>
+        <FormControl fullWidth sx={{ mb: 3 }}>
           <InputLabel>Tone (Optional)</InputLabel>
           <Select
             value={tone}
@@ -74,42 +96,62 @@ function App() {
 
         <Button
           variant="contained"
+          color="primary"
           onClick={handleSubmit}
           disabled={!emailContent || loading}
           fullWidth
+          sx={{
+            py: 1.5,
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            borderRadius: 2,
+            textTransform: 'none',
+          }}
         >
-          {loading ? <CircularProgress size={24} /> : "Generate reply"}
+          {loading ? <CircularProgress size={24} /> : " Generate Reply"}
         </Button>
-      </Box>
 
-      {error && (
-        <Typography color="error" sx={{ mb: 2 }}>
-          {error}
-        </Typography>
-      )}
-
-      {generatedReply && (
-        <Box sx={{ mt: 3 }}>
-          <Typography variant="h6" gutterBottom>
-            Generated Reply:
+        {error && (
+          <Typography color="error" align="center" sx={{ mt: 2 }}>
+            {error}
           </Typography>
-          <TextField
-            fullWidth
-            multiline
-            rows={6}
-            variant="outlined"
-            value={generatedReply}
-            InputProps={{ readOnly: true }}
-          />
+        )}
+      </Paper>
+
+      {/* Generated Reply Section */}
+      {generatedReply && (
+        <Paper
+          elevation={3}
+          sx={{
+            mt: 4,
+            p: 3,
+            borderRadius: 3,
+            backgroundColor: '#ffffff',
+            border: '1px solid #e0e0e0',
+          }}
+        >
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', color: '#1976d2' }}>
+             Generated Reply:
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ whiteSpace: 'pre-line', mb: 2, lineHeight: 1.6 }}
+          >
+            {generatedReply}
+          </Typography>
 
           <Button
             variant="outlined"
-            sx={{ mt: 2 }}
+            sx={{
+              mt: 2,
+              borderRadius: 2,
+              textTransform: 'none',
+            }}
             onClick={() => navigator.clipboard.writeText(generatedReply)}
           >
             Copy to Clipboard
           </Button>
-        </Box>
+        </Paper>
       )}
     </Container>
   );
