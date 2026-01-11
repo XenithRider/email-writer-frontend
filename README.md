@@ -9,8 +9,12 @@ An intelligent email reply generator that uses AI to craft professional response
 👉 https://email-writer-frontend-9ysh.vercel.app/
 
 ## Screenshot
+![Project Screenshot](image1.png)
 
-![Project Screenshot](image.png)
+![Project Screenshot](image3.png)
+
+![Project Screenshot](image2.png)
+
 
 
 ## Features
