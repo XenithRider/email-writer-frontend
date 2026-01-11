@@ -25,7 +25,7 @@ function App() {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/email/generate", {
+      const response = await axios.post("https://honest-nature-production-78f1.up.railway.app/", {
         emailContent,
         tone,
       });
