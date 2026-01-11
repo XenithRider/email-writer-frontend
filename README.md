@@ -1,13 +1,17 @@
 # Email Reply AI
 An intelligent email reply generator that uses AI to craft professional responses based on the original email content and desired tone.
 
+
+
 ## Live Demo
 
 **Frontend (React):**
 👉 https://email-writer-frontend-9ysh.vercel.app/
 
-**Backend (Spring Boot):**
-👉 https://honest-nature-production-78f1.up.railway.app/api/email/generate
+## Screenshot
+
+![Project Screenshot](image.png)
+
 
 ## Features
 **Smart Reply Generation:** AI-powered email responses based on context
